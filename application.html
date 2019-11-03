@@ -202,7 +202,8 @@
           const stream = new mobikit.MobikitStream(mobikitAPI.auth, feedId);
           stream.tags = {
             source: document.getElementById("userId").value,
-            source: document.getElementById("userId").value
+            provider: document.getElementById("userProvider").value,
+            phone: document.getElementById("userPhone").value
           };
           // On stream connect, update the banner
           stream.on_connect = () => {
