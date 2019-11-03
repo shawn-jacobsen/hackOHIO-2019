@@ -10,6 +10,20 @@ http://10fd9bca.ngrok.io/
  # SendGrid API Token
  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
 
+ # Zapier Info
+Union: https://hooks.zapier.com/hooks/catch/5998420/o4yfcb3/
+Football: https://hooks.zapier.com/hooks/catch/5998420/o4yw3cr/
+Flicks for Free: https://hooks.zapier.com/hooks/catch/5998420/o4ywm0e/
+Dump and Run: https://hooks.zapier.com/hooks/catch/5998420/o4ywtm8/
+Involvement Fair: https://hooks.zapier.com/hooks/catch/5998420/o4ywut7/
+Texas Instruments: https://hooks.zapier.com/hooks/catch/5998420/o4yw619/
+
+# Create Automation through javascript
+https://mobikitinc.github.io/mobikit-js/@mobikit/core/AsyncPaginator.html#next
+
+https://github.com/mobikitinc/mobikit-js/blob/master/packages/core/src/automations.js
+
+
 # python stream data: https://github.com/mobikitinc/mobikit-examples/tree/master/python-stream-data
 
 # mobikit examples: https://github.com/mobikitinc/mobikit-examples
