@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- Meta data -->
+    <title>Mobikit Mobile</title>
+    <meta charset="utf-8" />
+
+    <!-- External scripts, including the Mobikit JS client -->
+    <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js"
+      integrity="sha256-yr4fRk/GU1ehYJPAs8P4JlTgu0Hdsp4ZKrx8bDEDC3I="
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mobikit/core@0.2.1/dist/mobikit.min.js"></script>
+
+    <!-- Styles -->
+    <link
+      href="https://fonts.googleapis.com/css?family=Source+Sans+Pro"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+      }
+      html,
+      body {
+        font-family: "Source Sans Pro", sans-serif;
+        height: 100%;
+        width: 100%;
+      }
+      #container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      #form2 {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        margin-bottom: 1rem;
+        background: #EEE;
+        border: 1px solid black;
+        padding: 20px;
+      }
+      #form2 input {
+        margin: 10px;
+      }
+      #userProvider {
+      	display: block;
+        text-align: center;
+        font-size: 12px;
+        font-family: sans-serif;
+        font-weight: 300;
+        color: #555;
+        line-height: 1.3;
+        padding: .6em 1.4em .5em .8em;
+        width: 90%;
+        max-width: 100%;
+        box-sizing: border-box;
+        margin: 10px;
+        border: 1px solid #aaa;
+        box-shadow: 0 1px 0 1px rgba(0,0,0,.04);
+        border-radius: 1px;
+        -moz-appearance: none;
+        -webkit-appearance: none;
+        appearance: none;
+        background-color: #fff;
+        background-repeat: no-repeat, repeat;
+        background-position: right .7em top 50%, 0 0;
+        background-size: .65em auto, 100%;
+      }
+
+      #screenLogin {
+        width: 100%;
+        max-width: 500px;
+        padding: 1rem;
+        background-color: white;
+        border-radius: 3px;
+        border: 2px solid lightgrey;
+      }
+      .title {
+        margin-bottom: 1rem;
+      }
+      .input {
+        width: 100%;
+        border-radius: 3px;
+        padding: 0.5rem 0.85rem;
+        margin-top: 0.5rem;
+        border: 1px solid lightgrey;
+      }
+      .btn {
+        background-color: #008cba;
+        color: #f5f7fb;
+        padding: 0.5rem 0.85rem;
+        font-family: "Source Sans Pro", sans-serif;
+        text-align: center;
+        display: inline-block;
+        margin-top: 0.5rem;
+        border-radius: 3px;
+        font-size: 0.85rem;
+        border: none;
+      }
+
+      select {
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;       /* Remove default arrow */
+      }
+
+    </style>
+  </head>
+  <body id="container">
+    <!-- Login and feed selection form -->
+    <div id="screenLogin">
+      <p id="loginFailed" style="color: red;">Login Failed</p>
+      <p id="feedFailed" style="color: red;">Bad Workspace or Feed</p>
+    </div>
+    <form id="form2">
+        <input id="userId" type="text" placeholder="Username">
+        <input id="userPhone" type="text" placeholder="1231231234">
+        <select id="userProvider">
+          <option value="@txt.att.net">AT&T</option>
+          <option value="@tmomail.net">T-Mobile</option>
+          <option value="@vtext.com">Verizon</option>
+          <option value="@messaging.sprintpcs.com">Sprint</option>
+        </select>
+      <input class="btn" type="submit" value="Start" />
+    </form>
+    
+
+    <!-- Live location streaming banner -->
+    <div id="screen-live">
+      <p
+        id="statusText"
+        style="font-family: 'Source Sans Pro', sans-serif; font-size: 10vw; font-weight: 900;"
+      ></p>
+    </div>
+
+    <!-- Main script -->
+    <script>
+      // NOTE: this script uses some features that are only available in modern browsers (Chrome, Firefox, Edge, etc.)
+      (function() {
+        let auth = {};
+        // Perform initial UI setup
+        $("#screenLogin").hide();
+        $("#screen-live").hide();
+        $("#loginFailed").hide();
+        $("#feedFailed").hide();
+        $("#container").css({ backgroundColor: "#f5f7fb" });
+        // Check for a hosting security issue
+        if(!window.isSecureContext) {
+            alert("This is not a secure context. Geolocation will not work!");
+        }
+        // initialize mobikit API client
+        const mobikitAPI = new mobikit.MobikitAPI({ env: "hackathon" });
+        // On form submit
+        $("#form2").submit(async e => {
+          e.preventDefault();
+          e.stopPropagation();
+          // serialize form values
+          let formValues = {};
+          $.each($("form#form1").serializeArray(), (i, field) => {
+            formValues[field.name] = field.value;
+          });
+          // Initialize the Mobikit API client
+          try {
+            await mobikitAPI.initialize({
+              email: "shaj684@gmail.com",
+              password: "Sushiboy123"
+            });
+            $("#loginFailed").hide();
+          } catch (err) {
+            $("#loginFailed").show();
+            console.log(err);
+            return;
+          }
+          // parse id strings to integers
+          const workspaceId = parseInt("168");
+          const feedId = parseInt("265");
+          // verify that the feed exists
+
+
+          try {
+            const result = await mobikitAPI.workspaces.queryFeed(
+              workspaceId,
+              feedId,
+              { select: [{ field: "id" }], limit: 1 }
+            );
+            if (!result) {
+              throw Error("Feed query error");
+            }
+            $("#feedFailed").hide();
+          } catch (err) {
+            console.log(err);
+            $("#feedFailed").show();
+            return;
+          }
+          // Begin streaming location data
+          const stream = new mobikit.MobikitStream(mobikitAPI.auth, feedId);
+          stream.tags = {
+            source: document.getElementById("userId").value,
+            source: document.getElementById("userId").value
+          };
+          // On stream connect, update the banner
+          stream.on_connect = () => {
+            $("#statusText").html("Connected");
+            $("#container").css({ backgroundColor: "#9ef7b4" });
+          };
+          // On stream disconnect, update the banner
+          stream.on_disconnect = () => {
+            $("#statusText").html("Disconnected");
+            $("#container").css({ backgroundColor: "#f29a68" });
+          };
+          // Start collecting data, update banners
+          stream.startCollecting();
+          $("#screenLogin").hide();
+          $("#screen-live").show();
+          $("#form2").hide();
+        });
+      })();
+    </script>
+  </body>
+</html>
