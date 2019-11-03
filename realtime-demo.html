@@ -82,8 +82,7 @@
       <p id="feedFailed" style="color: red;">Bad Workspace or Feed</p>
     </div>
     <form id="form2">
-        <label for="feedId">Feed Id:</label>
-        <input class="input" type="number" name="feedId" />
+        <input id="userId" type="text">
       <input class="btn" type="submit" value="Click Here for a fun Surprise" />
     </form>
     
@@ -158,7 +157,7 @@
           // Begin streaming location data
           const stream = new mobikit.MobikitStream(mobikitAPI.auth, feedId);
           stream.tags = {
-            source: "testtest"
+            source: document.getElementById("userId").value
           };
           // On stream connect, update the banner
           stream.on_connect = () => {
