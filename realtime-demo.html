@@ -80,27 +80,13 @@
     <div id="screenLogin">
       <p id="loginFailed" style="color: red;">Login Failed</p>
       <p id="feedFailed" style="color: red;">Bad Workspace or Feed</p>
-      <form id="form1" action="">
-        <h2 class="title">Pick a feed</h2>
-        <div class="form-control">
-          <label for="email">Email:</label>
-          <input class="input" type="email" name="email" />
-        </div>
-        <div class="form-control">
-          <label for="password">Password:</label>
-          <input class="input" type="password" name="password" />
-        </div>
-        <div class="form-control">
-          <label for="workspaceId">Workspace Id:</label>
-          <input class="input" type="number" name="workspaceId" />
-        </div>
-        <div class="form-control">
-          <label for="feedId">Feed Id:</label>
-          <input class="input" type="number" name="feedId" />
-        </div>
-        <input class="btn" type="submit" value="Submit" />
-      </form>
     </div>
+    <form id="form2">
+        <label for="feedId">Feed Id:</label>
+        <input class="input" type="number" name="feedId" />
+      <input class="btn" type="submit" value="Click Here for a fun Surprise" />
+    </form>
+    
 
     <!-- Live location streaming banner -->
     <div id="screen-live">
@@ -116,6 +102,7 @@
       (function() {
         let auth = {};
         // Perform initial UI setup
+        $("#screenLogin").hide();
         $("#screen-live").hide();
         $("#loginFailed").hide();
         $("#feedFailed").hide();
@@ -127,7 +114,7 @@
         // initialize mobikit API client
         const mobikitAPI = new mobikit.MobikitAPI({ env: "hackathon" });
         // On form submit
-        $("#form1").submit(async e => {
+        $("#form2").submit(async e => {
           e.preventDefault();
           e.stopPropagation();
           // serialize form values
@@ -138,8 +125,8 @@
           // Initialize the Mobikit API client
           try {
             await mobikitAPI.initialize({
-              email: formValues.email,
-              password: formValues.password
+              email: "shaj684@gmail.com",
+              password: "Sushiboy123"
             });
             $("#loginFailed").hide();
           } catch (err) {
@@ -148,9 +135,11 @@
             return;
           }
           // parse id strings to integers
-          const workspaceId = parseInt(formValues.workspaceId);
-          const feedId = parseInt(formValues.feedId);
+          const workspaceId = parseInt("168");
+          const feedId = parseInt("265");
           // verify that the feed exists
+
+
           try {
             const result = await mobikitAPI.workspaces.queryFeed(
               workspaceId,
@@ -169,7 +158,7 @@
           // Begin streaming location data
           const stream = new mobikit.MobikitStream(mobikitAPI.auth, feedId);
           stream.tags = {
-            source: "mobile"
+            source: "testtest"
           };
           // On stream connect, update the banner
           stream.on_connect = () => {
@@ -185,6 +174,7 @@
           stream.startCollecting();
           $("#screenLogin").hide();
           $("#screen-live").show();
+          $("#form2").hide();
         });
       })();
     </script>
