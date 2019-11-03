@@ -4,6 +4,9 @@
  Live Server:
 http://10fd9bca.ngrok.io/
 
+# Web Host App
+https://sweet2130ohio.000webhostapp.com/app
+
  # Shawn's API key
  502c26634d0243db92233e183d5cf02c6e08536e  
 
@@ -13,9 +16,6 @@ http://10fd9bca.ngrok.io/
  # Zapier Info
 Union: https://hooks.zapier.com/hooks/catch/5998420/o4yfcb3/
 Football: https://hooks.zapier.com/hooks/catch/5998420/o4yw3cr/
-Flicks for Free: https://hooks.zapier.com/hooks/catch/5998420/o4ywm0e/
-Dump and Run: https://hooks.zapier.com/hooks/catch/5998420/o4ywtm8/
-Involvement Fair: https://hooks.zapier.com/hooks/catch/5998420/o4ywut7/
 Texas Instruments: https://hooks.zapier.com/hooks/catch/5998420/o4yw619/
 
 # Create Automation through javascript
