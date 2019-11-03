@@ -18,6 +18,7 @@ query = json.loads('{"select":[{"field":"id"},{"field":"tm"},{"field":"point","f
 
 mobikit.set_api_key("373afebc8a2b2ee5d5e7743cc73565c82d9ecdd8", environment="ohio")
 df = mobikit.workspaces.load(workspace_id, feed_name, query=query)
+print("Recent positions query", query)
 # Honda---------
 # Shawn's API : 502c26634d0243db92233e183d5cf02c6e08536e 
 # parse command line arguments
@@ -33,7 +34,7 @@ parser.add_argument(
     help="timestamp in ISO8601 format",
 )
 
-# parser.add_argument("--tags", "-d", type=str, default="{}", help="JSON object")
+parser.add_argument("--tags", "-d", type=str, default="{}", help="JSON object")
 parser.add_argument("--debug", action="store_true", help="debug logging")
 
 args = parser.parse_args()
@@ -58,7 +59,7 @@ print("SID: {}".format(sio.sid))
 # assemble the GeoJSON feature
 feature = geojson.Feature(
     geometry=geojson.Point((args.longitude, args.latitude)),
-    properties=json.loads(args("--tags", "-d", type=str, default="{}", help="JSON object")),
+    properties=json.loads(args.tags),
 )
 
 # assemble the SocketIO event

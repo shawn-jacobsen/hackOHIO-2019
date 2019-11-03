@@ -2,7 +2,7 @@
  Creating a modern frontend dashboard by implementing mobikit
 
  Live Server:
- http://55a60e24.ngrok.io/
+http://10fd9bca.ngrok.io/
 
  # Shawn's API key
  502c26634d0243db92233e183d5cf02c6e08536e  
