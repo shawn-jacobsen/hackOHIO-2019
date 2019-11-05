@@ -18,6 +18,18 @@ Dump and Run: https://hooks.zapier.com/hooks/catch/5998420/o4ywtm8/
 Involvement Fair: https://hooks.zapier.com/hooks/catch/5998420/o4ywut7/
 Texas Instruments: https://hooks.zapier.com/hooks/catch/5998420/o4yw619/
 
+
+## sendgrid
+# API Token/Secret
+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
+
+## Twilio
+# API Sid
+SK7e7890127e4368e5cbfbd385c9756794
+# Secret
+xmaFizqvftQTE2NvCfEWOZBSxUv6osIL
+
+
 # Create Automation through javascript
 https://mobikitinc.github.io/mobikit-js/@mobikit/core/AsyncPaginator.html#next
 
