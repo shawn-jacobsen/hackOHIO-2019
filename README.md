@@ -1,5 +1,7 @@
 # hackOhio_2130
  Creating a modern frontend dashboard by implementing mobikit
+ 
+ note: all tokens listed have been deactivated / have expired.
 
  Live Server:
 http://10fd9bca.ngrok.io/
