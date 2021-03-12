@@ -1,5 +1,5 @@
 # hackOhio_2130
- Creating a modern frontend dashboard by implementing mobikit
+ Creating a modern texting-based application that allows users to receive location-specific event/marketing information based on their current geolocation utilizing the mobikit API.
 
  Live Server (currently inactive):
 http://10fd9bca.ngrok.io/
