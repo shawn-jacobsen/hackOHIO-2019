@@ -1,7 +1,7 @@
 # hackOhio_2130
  Creating a modern texting-based application that allows users to receive location-specific event/marketing information based on their current geolocation utilizing the mobikit API.
 
- Live Server (currently inactive):
+ Live Server (tunnel currently inactive):
 http://10fd9bca.ngrok.io/
 
 # Web Host App (inactive)
