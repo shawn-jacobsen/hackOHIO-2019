@@ -8,10 +8,9 @@ http://10fd9bca.ngrok.io/
 https://sweet2130ohio.000webhostapp.com/app
 
  # Zapier Info
-Union: https://hooks.zapier.com/hooks/catch/5998420/o4yfcb3/
-Football: https://hooks.zapier.com/hooks/catch/5998420/o4yw3cr/
-Texas Instruments: https://hooks.zapier.com/hooks/catch/5998420/o4yw619/
-
+Union: https://hooks.zapier.com/hooks/catch/5998420/o4yfcb3/ <br>
+Football: https://hooks.zapier.com/hooks/catch/5998420/o4yw3cr/ <br>
+Texas Instruments: https://hooks.zapier.com/hooks/catch/5998420/o4yw619/ <br>
 
 # Create Automation through javascript
 https://mobikitinc.github.io/mobikit-js/@mobikit/core/AsyncPaginator.html#next
